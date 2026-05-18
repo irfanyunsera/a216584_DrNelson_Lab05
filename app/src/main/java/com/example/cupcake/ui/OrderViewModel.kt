@@ -24,7 +24,7 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
     val uiState: StateFlow<OrderUiState> = _uiState.asStateFlow()
 
     init {
-        // Mengumpul data lama dari Room secara reaktif [cite: 59]
+        
         viewModelScope.launch {
             repository.getAllOrdersStream().collect { orders ->
                 _uiState.update { it.copy(orderHistory = orders) }
@@ -60,12 +60,12 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
         _uiState.update {
             OrderUiState(
                 pickupOptions = pickupOptions(),
-                orderHistory = it.orderHistory // Kekalkan data sejarah
+                orderHistory = it.orderHistory
             )
         }
     }
 
-    // Fungsi menyimpan data tempahan ke dalam Room [cite: 58]
+    
     fun saveOrderToDatabase() {
         viewModelScope.launch {
             val currentState = _uiState.value
@@ -103,7 +103,7 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
         return dateOptions
     }
 
-    // Menggunakan fully qualified name untuk mengelakkan ralat Unresolved Reference
+    
     companion object {
         val Factory: androidx.lifecycle.ViewModelProvider.Factory = object : androidx.lifecycle.ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
