@@ -71,7 +71,7 @@ fun CupcakeAppBar(
 
 @Composable
 fun CupcakeApp(
-    // Memasukkan factory provider ke dalam ViewModel instance agar Room terbina dengan betul
+    
     viewModel: OrderViewModel = viewModel(factory = OrderViewModel.Factory),
     navController: NavHostController = rememberNavController()
 ) {
@@ -96,13 +96,13 @@ fun CupcakeApp(
             startDestination = CupcakeScreen.Start.name,
             modifier = Modifier
                 .fillMaxSize()
-                // Mengeluarkan verticalScroll dari skrin utama supaya senarai LazyColumn di StartOrderScreen boleh diskrol secara berasingan
+                
                 .padding(innerPadding)
         ) {
             composable(route = CupcakeScreen.Start.name) {
                 StartOrderScreen(
                     quantityOptions = DataSource.quantityOptions,
-                    orderHistory = uiState.orderHistory, // Hantar data sejarah dari StateFlow Room [cite: 59]
+                    orderHistory = uiState.orderHistory, 
                     onNextButtonClicked = {
                         viewModel.setQuantity(it)
                         navController.navigate(CupcakeScreen.Flavor.name)
@@ -145,9 +145,9 @@ fun CupcakeApp(
                         cancelOrderAndNavigateToStart(viewModel, navController)
                     },
                     onSendButtonClicked = { subject: String, summary: String ->
-                        // 1. Simpan data secara automatik ke storan Room Database 
+                        
                         viewModel.saveOrderToDatabase()
-                        // 2. Lancarkan perkongsian intent luaran
+                        
                         shareOrder(context, subject = subject, summary = summary)
                     },
                     modifier = Modifier.fillMaxHeight().verticalScroll(rememberScrollState())
