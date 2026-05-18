@@ -24,7 +24,7 @@ import com.example.cupcake.data.OrderEntity
 @Composable
 fun StartOrderScreen(
     quantityOptions: List<Pair<Int, Int>>,
-    orderHistory: List<OrderEntity>, // Menambah data parameter sejarah Room
+    orderHistory: List<OrderEntity>, 
     onNextButtonClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -41,7 +41,7 @@ fun StartOrderScreen(
             Image(
                 painter = painterResource(R.drawable.cupcake),
                 contentDescription = null,
-                modifier = Modifier.width(150.dp) // Dikecilkan saiz agar muat dengan list sejarah bawah
+                modifier = Modifier.width(150.dp) 
             )
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
             Text(
@@ -67,7 +67,7 @@ fun StartOrderScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // UI Tambahan: Paparan Sejarah Storan Kekal Room (Untuk tujuan pembuktian Demo VSR) 
+         
         Text(
             text = "Order History:",
             style = MaterialTheme.typography.titleMedium,
